@@ -5,8 +5,8 @@ class CreateMovies < ActiveRecord::Migration[5.1]
       t.string :title
       t.string :year
       t.string :runtime
-      t.string :plot
-      t.string :actors
+      t.text :plot
+      t.text :actors
       t.string :imdb_rating
       t.string :rotten_tomatoes_rating
 
