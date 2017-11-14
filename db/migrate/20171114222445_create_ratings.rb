@@ -5,6 +5,7 @@ class CreateRatings < ActiveRecord::Migration[5.1]
       t.references :movie
       t.references :user
       t.integer    :value
+      t.string     :review
 
       t.timestamps
     end

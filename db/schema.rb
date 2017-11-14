@@ -19,8 +19,9 @@ ActiveRecord::Schema.define(version: 20171114222445) do
     t.string "title"
     t.string "year"
     t.string "runtime"
-    t.string "plot"
-    t.string "actors"
+    t.string "production"
+    t.text "plot"
+    t.text "actors"
     t.string "imdb_rating"
     t.string "rotten_tomatoes_rating"
     t.datetime "created_at", null: false
@@ -31,6 +32,7 @@ ActiveRecord::Schema.define(version: 20171114222445) do
     t.bigint "movie_id"
     t.bigint "user_id"
     t.integer "value"
+    t.string "review"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["movie_id"], name: "index_ratings_on_movie_id"
