@@ -22,7 +22,7 @@
 <ul>
   <% if @movie.ratings %>
     <% @movie.ratings.each do |rating| %>
-      <li><strong><%= rating.user.username %></strong> says:
+      <li class="fa fa-tree"><strong> <%= rating.user.username %></strong> says:
       <% if rating.value >= 1 %>
        thumbs up! </li>
       <% else %>

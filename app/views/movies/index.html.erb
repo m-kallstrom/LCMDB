@@ -2,13 +2,13 @@
 
 <ul>
   <% @movies.each do |movie| %>
-    <li><strong>Title:  <%= link_to "#{movie.title}", movie_path(movie.id)  %></li></strong>
-    <li>Year:  <%= movie.year  %></li>
-    <li>Main Actors:  <%= movie.actors  %></li>
-    <li>IMDB Rating:  <%= movie.imdb_rating  %></li>
-    <li>Rotten Tomatoes Rating:  <%= movie.rotten_tomatoes_rating  %></li>
-    <li><strong>Lorenzini Rating:  <%= movie.lorenzini_rating  %></li></strong>
-    <li>Plot:  <%= movie.short_summary  %></li>
+    <h3><li class="fa fa-tree">Title:  <%= link_to "#{movie.title}", movie_path(movie.id)  %></li></h3>
+    <li class="fa fa-snowflake-o"><strong> Year:</strong> <%= movie.year  %></li>
+    <br><li class="fa fa-snowflake-o"><strong> Main Actors:</strong> <%= movie.actors  %></li>
+    <br><li class="fa fa-snowflake-o"><strong> IMDB Rating:</strong> <%= movie.imdb_rating  %></li>
+    <br><li class="fa fa-snowflake-o"><strong> Rotten Tomatoes Rating: </strong><%= movie.rotten_tomatoes_rating  %></li>
+    <br><li class="fa fa-snowflake-o"><strong> Lorenzini Rating: <%= movie.lorenzini_rating  %></li></strong>
+    <br><li class="fa fa-snowflake-o"><strong> Plot:</strong> <%= movie.short_summary  %></li><br>
     <br>
   <% end %>
 </ul>

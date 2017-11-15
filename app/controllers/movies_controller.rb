@@ -58,7 +58,7 @@ class MoviesController < ApplicationController
   end
 
   def search
-    @movies = Movie.search(params[:request])
+    @movies = Movie.where(params[:request])
   end
 
   private
