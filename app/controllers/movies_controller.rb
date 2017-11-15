@@ -12,4 +12,10 @@ class MoviesController < ApplicationController
   def show
   end
 
+  def search
+
+  end
+
+  def confirm
+  end
 end
