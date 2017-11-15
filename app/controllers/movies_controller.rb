@@ -5,11 +5,14 @@ class MoviesController < ApplicationController
   end
 
   def confirm
-    #make the request
-    #initialize a new movie based on the info
-    #display that info to the user and ask for confirmation that it's correct
-      #if yes, then send it off to the create route
-      #if no, then go back to the new route to do it again
+    title = params[:title]
+    title = title.split(" ").join('+')
+    key = ENV['OMDB_KEY']
+    p key
+    require 'open-uri'
+    # @response = open("http://www.omdbapi.com/?apikey=#{key}&t=#{title}&plot=full").read
+    # puts @response
+    render 'confirm'
   end
 
   def create
@@ -35,5 +38,10 @@ class MoviesController < ApplicationController
   def search
     @movies = Movie.search(params[:request])
   end
+
+  # private
+  #   def movie_params
+  #     params.require(:movie).permit(:username, :password)
+  #   end
 
 end

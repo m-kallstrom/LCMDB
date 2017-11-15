@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
 
   get '/movies/search' => 'movies#search'
-  get '/movies/confirm' => 'movies#confirm'
+  post '/movies/confirm' => 'movies#confirm'
 
   resources :users, only: [:new, :create, :show, :index]
   resources :movies, only: [:new, :create, :show, :index]

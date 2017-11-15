@@ -1,1 +1,7 @@
-<!-- makes the api call to make a new movie -->
+<h2>Add a New Movie</h2>
+
+
+<%= form_tag(action: "confirm", method: "POST") do %>
+  <%= text_field_tag(:title) %>
+  <%= submit_tag("Search") %>
+<% end %>
