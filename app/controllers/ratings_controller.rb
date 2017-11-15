@@ -1,11 +1,7 @@
 class RatingsController < ApplicationController
 
-  def new
-    @rating = Rating.new
-  end
-
   def create
-    @rating = Rating.new(params[:rating])
+    @rating = Rating.new(ratings_params)
     if @rating.save
       redirect_to "/movies/#{@rating.movie_id}"
     else
@@ -15,5 +11,9 @@ class RatingsController < ApplicationController
     end
   end
 
+  private
+    def ratings_params
+      params.require(:rating).permit(:movie_id, :user_id, :review, :value, :authenticity_token)
+    end
 
 end
