@@ -7,31 +7,12 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <nav class="navbar navbar-default" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <div class="col-md-8">
-        <a href="/movies">Show All Movies</a> |
-        <% if current_user %>
-          Signed in as <%= link_to current_user.username, current_user %> |
-          <%= link_to "Logout", '/logout' %> |
-        <% else %>
-          <%= link_to 'Login', '/login' %> |
-          <%= link_to 'Signup', '/users/new' %>
-        <% end %>
-        <%= link_to 'Add a New Movie', new_movie_path %>
-      </div>
-      <div class="col-md-4" class="form-inline">
-        <%= form_tag("/movies/search", method:"get") do %>
-          <%= text_field_tag :request %>
-          <%= submit_tag :search %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</nav>
 
-  <body>
+  <body id= "bootstrap_overrides">
+      <div id="main-layout-container" class="container-fluid">
+        <h1 id="main-header">The Lorenzini Christmas Movie Database</h1>
+        <%= render partial: 'partials/navigation' %>
     <%= yield %>
+      </div>
   </body>
 </html>
