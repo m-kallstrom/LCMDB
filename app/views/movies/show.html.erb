@@ -12,15 +12,8 @@
 
 <h3> Rate this movie </h3>
   <div class="ratings">
-
-    <form class="rating" method="POST" action="/ratings">
-      <input type="text" name="rating[review]" placeholder="Optional: Write a Short Review Here and then Click Thumbs Up or Thumbs Down to Submit">
-      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-      <input type="hidden" name="rating[movie_id]" value="<%=@movie.id%>">
-      <input type="hidden" name="rating[user_id]" value="<%=current_user.id%>">
-      <button type="submit" name="rating[value]" value="1" class="qvote block fa fa-thumbs-o-up upvote-button"></button>
-      <button type="submit" name="rating[value]" value="-1" class="block fa fa-thumbs-o-down downvote-button"></button>
-    </form>
+    <%= render partial: "/partials/ratings" %>
+    <%= render partial: "/partials/errors", locals: {errors: @errors} %>
   </div>
 
 <h3>Ratings for This Movie</h3>
