@@ -1,3 +1,30 @@
 <h2>Confirm This Movie</h2>
 
-<%= @response %>
+<% if @movie %>
+
+<form class="movie" method="POST" action="/movies">
+
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <input type="hidden" name="movie[runtime]" value="<%= @movie.runtime %>">
+  <input type="hidden" name="movie[production]" value="<%= @movie.production %>">
+  <label>Title:  <input type="text" name="movie[title]" value="<%= @movie.title %>"></label>
+  <br>
+  <label>Year:  <input type="text" name="movie[year]" value="<%= @movie.year %>"></label>
+  <br>
+  <label>Actors:  <input type="text" name="movie[actors]" value="<%= @movie.actors %>"></label>
+  <br>
+  <label>IMDB Rating:  <input type="text" name="movie[imdb_rating]" value="<%= @movie.imdb_rating %>"></label>
+  <br>
+  <label>Rotten Tomatoes Rating:  <input type="text" name="movie[rotten_tomatoes_rating]" value="<%= @movie.rotten_tomatoes_rating %>"></label>
+  <br>
+  <label>Plot:  <input type="text" name="movie[plot]" value="<%= @movie.plot %>"></label>
+  <br>
+  <button type="submit">Everything Looks Good! Save This Movie!</button>
+
+</form>
+
+<% end %>
+
+<% if @errors %>
+  <%= render partial: "/partials/errors", locals: {errors: @errors} %>
+<% end %>

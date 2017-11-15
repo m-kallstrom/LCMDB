@@ -8,15 +8,15 @@ class MoviesController < ApplicationController
     title = params[:title]
     title = title.split(" ").join('+')
     key = ENV['OMDB_KEY']
-    p key
     require 'open-uri'
-    # @response = open("http://www.omdbapi.com/?apikey=#{key}&t=#{title}&plot=full").read
-    # puts @response
+    json = open("http://www.omdbapi.com/?apikey=#{key}&t=#{title}&plot=full").read
+    movie_data = JSON.parse(json)
+    @movie = Movie.new(title: movie_data["Title"], runtime: movie_data["Runtime"], year: movie_data["Year"], plot: movie_data["Plot"], actors: movie_data["Actors"], imdb_rating: movie_data["Ratings"][0]["Value"], rotten_tomatoes_rating: movie_data["Ratings"][1]["Value"], production: movie_data["Production"] )
     render 'confirm'
   end
 
   def create
-    @movie = Movie.new(params[:movie])
+    @movie = Movie.new(movie_params)
     if @movie.save
       redirect_to @movie
     else
@@ -39,9 +39,9 @@ class MoviesController < ApplicationController
     @movies = Movie.search(params[:request])
   end
 
-  # private
-  #   def movie_params
-  #     params.require(:movie).permit(:username, :password)
-  #   end
+  private
+    def movie_params
+      params.require(:movie).permit(:authenticity_token, :title, :year, :production, :actors, :plot, :runtime, :imdb_rating, :rotten_tomatoes_rating)
+    end
 
 end
