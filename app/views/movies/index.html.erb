@@ -1,0 +1,14 @@
+<h2>Rated Movies</h2>
+
+<ul>
+  <% @movies.each do |movie| %>
+    <li><strong>Title:  <%= movie.title  %></li></strong>
+    <li>Year:  <%= movie.year  %></li>
+    <li>Main Actors:  <%= movie.actors  %></li>
+    <li>Plot:  <%= movie.plot  %></li>
+    <br>
+    <li>IMDB Rating:  <%= movie.imdb_rating  %></li>
+    <li>Rotten Tomatoes Rating:  <%= movie.rotten_tomatoes_rating  %></li>
+    <li><strong>Lorenzini Rating:  <%= movie.lorenzini_rating  %></li></strong>
+  <% end %>
+</ul>

@@ -4,11 +4,15 @@
     <title>Lcmdb</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
-  <body>
+  <body id= "bootstrap_overrides">
+      <div id="main-layout-container" class="container-fluid">
+        <h1 id="main-header">The Lorenzini Christmas Movie Database</h1>
+        <%= render partial: 'partials/navigation' %>
     <%= yield %>
+      </div>
   </body>
 </html>

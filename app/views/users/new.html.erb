@@ -1,0 +1,9 @@
+<% if @errors %>
+  <%= render partial: "/partials/errors", locals: {errors: @errors} %>
+<% end %>
+
+<%= form_for :user, url: '/users' do |form| %>
+  Username: <%= form.text_field :username %>
+  Password: <%= form.password_field :password %>
+  <%= form.submit "Submit" %>
+<% end %>
