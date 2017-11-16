@@ -11,8 +11,7 @@ class MoviesController < ApplicationController
     require 'open-uri'
     json = open("http://www.omdbapi.com/?apikey=#{key}&t=#{title}&plot=full").read
     movie_data = JSON.parse(json)
-    if movie_data.include?("Movie not found!")
-      status 422
+    if json.include?("Movie not found!")
       @errors = ["Sorry, couldn't find that one.", "Computers are dumb sometimes.", "Try getting the exact title from IMDB.", "This uses free software so you get what you pay for.", "Hit the back button or try entering it manually."]
       @movie = Movie.new
       render 'confirm'
@@ -21,7 +20,6 @@ class MoviesController < ApplicationController
       if @movie
         render 'confirm'
       else
-        status 422
         @errors = ["Not sure what happened there.", "Try again."]
         render 'new'
       end
@@ -30,7 +28,6 @@ class MoviesController < ApplicationController
       if @movie
         render 'confirm'
       else
-        status 422
         @errors = ["Not sure what happened there.", "Try again."]
         render 'new'
       end
@@ -42,7 +39,6 @@ class MoviesController < ApplicationController
     if @movie.save
       redirect_to @movie
     else
-      status 422
       @errors = @movie.errors.full_messages
       redirect_to new_movie_path
     end

@@ -1,8 +1,25 @@
 <h2>Log into your account</h2>
-<%= form_tag '/login' do %>
 
-  Email: <%= text_field_tag :username %>
-  Password: <%= password_field_tag :password %>
-  <%= submit_tag "Log In" %>
 
-<% end %>
+<div class="container">
+  <form method="POST" action="/sessions">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <div class="form-group row">
+      <label for="username" class="col-sm-2 col-form-label">Username:</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" name="user[username]" value="<%= @user.username %>">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="password" class="col-sm-2 col-form-label">Password:</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="password" name="user[password]">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="offset-sm-2 col-sm-10">
+        <button type="submit" class="btn btn-success">Log In!</button>
+      </div>
+    </div>
+  </form>
+</div>
