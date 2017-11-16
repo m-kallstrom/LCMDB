@@ -2,7 +2,7 @@
 
 <%= paginate @movies, outer_window: 3 %>
 
-<p id="sort_by">Showing movies sorted by <%= @sorting_by %> | Sort by <a href="/movies?sort_by=<%= @sort_by %>"><%= @sort_by %></a>?</p>
+<p class="center">Showing movies sorted by <%= @sorting_by %> | Sort by <a href="/movies?sort_by=<%= @sort_by %>"><%= @sort_by %></a>?</p>
 
 <ul>
   <% @movies.each do |movie| %>
@@ -19,4 +19,6 @@
 
 <%= paginate @movies, outer_window: 3 %>
 
-<%= link_to "Add a movie?", new_movie_path %>
+<% if current_user %>
+    <%= link_to "Add a movie?", new_movie_path %>
+<% end %>

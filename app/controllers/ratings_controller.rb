@@ -4,9 +4,10 @@ class RatingsController < ApplicationController
     @rating = Rating.find_by(user_id: current_user.id, movie_id: ratings_params[:movie_id])
     if @rating
       if @rating.value == ratings_params[:value]
-        flash[:notice] = "You've already voted. Stop trying to stuff the ballot box."
+        flash[:notice] = "Review updated!"
+        @rating.update_attributes(review: ratings_params[:review])
       else
-        @rating.update_attributes(value: ratings_params[:value])
+        @rating.update_attributes(value: ratings_params[:value], review: ratings_params[:review])
       end
       redirect_to "/movies/#{@rating.movie_id}"
     else

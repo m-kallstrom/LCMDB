@@ -31,6 +31,7 @@ h1 {
   margin-top: 20px;
   font-family: Righteous;
   text-align: center;
+  color: white;
   font-size: 5vw;
   text-shadow: .5px .5px black;
 }
@@ -83,6 +84,6 @@ li {
   margin-left: 25px;
 }
 
-#sort_by {
+.center {
   text-align: center;
 }
