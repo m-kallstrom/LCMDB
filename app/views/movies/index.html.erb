@@ -2,7 +2,7 @@
 
 <ul>
   <% @movies.each do |movie| %>
-    <li><strong>Title:  <%= movie.title  %></li></strong>
+    <li><strong>Title:  <%= link_to "#{movie.title}", movie_path(movie.id)  %></li></strong>
     <li>Year:  <%= movie.year  %></li>
     <li>Main Actors:  <%= movie.actors  %></li>
     <li>Plot:  <%= movie.plot  %></li>
@@ -12,3 +12,5 @@
     <li><strong>Lorenzini Rating:  <%= movie.lorenzini_rating  %></li></strong>
   <% end %>
 </ul>
+
+<%= link_to "Add a movie?", new_movie_path %>

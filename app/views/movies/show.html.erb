@@ -1,1 +1,35 @@
-<!-- show details of the movie -->
+<h2><%= @movie.title %></h2>
+
+<ul>
+  <li>Year:  <%= @movie.year  %></li>
+  <li>Main Actors:  <%= @movie.actors  %></li>
+  <li>Plot:  <%= @movie.plot  %></li>
+  <br>
+  <li>IMDB Rating:  <%= @movie.imdb_rating  %></li>
+  <li>Rotten Tomatoes Rating:  <%= @movie.rotten_tomatoes_rating  %></li>
+  <li><strong>Lorenzini Rating:  <%= @movie.lorenzini_rating  %></li></strong>
+</ul>
+
+<h3> Rate this movie </h3>
+  <div class="ratings">
+    <%= render partial: "/partials/ratings" %>
+    <%= render partial: "/partials/errors", locals: {errors: @errors} %>
+  </div>
+
+<h3>Ratings for This Movie</h3>
+<ul>
+  <% if @movie.ratings %>
+    <% @movie.ratings.each do |rating| %>
+      <li><strong><%= rating.user.username %></strong> says:
+      <% if rating.value >= 1 %>
+       thumbs up! </li>
+      <% else %>
+        thumbs down! </li>
+      <% end %>
+    <li><%= rating.review %></li>
+    <br>
+    <% end %>
+  <% else %>
+    There are no ratings yet :(
+  <% end %>
+</ul>
