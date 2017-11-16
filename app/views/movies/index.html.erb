@@ -1,7 +1,7 @@
 <h2>Rated Movies</h2>
 
 <%= paginate @movies, outer_window: 3 %>
-
+<!-- add what version is being shown and link to the other version for sorting -->
 <ul>
   <% @movies.each do |movie| %>
     <h3><li class="fa fa-tree">  Title:  <%= link_to "#{movie.title}", movie_path(movie.id)  %></li></h3>

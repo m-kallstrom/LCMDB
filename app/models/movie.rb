@@ -2,11 +2,9 @@ class Movie < ApplicationRecord
   has_many :ratings
   has_many :viewers, through: :ratings, source: 'user'
 
-  validates_presence_of :title
+  validates_presence_of :title, :year, :runtime, :production, :plot, :actors, :imdb_rating, :rotten_tomatoes_rating
 
-  def lorenzini_rating
-    self.ratings.sum(:value)
-  end
+  validates_uniqueness_of :title, scope: :year
 
 
   def short_summary
