@@ -26,8 +26,8 @@
         <a class="nav-link" href="#">             </a>
       </li>
   </ul>
-<form class="form-inline my-2 my-lg-0 navbar-right">
-      <input class="form-control mr-sm-2" type="text" placeholder="This is broken.">
-      <button class="btn btn-success my-2 my-sm-0" type="button">Search</button>
+<form class="form-inline my-2 my-lg-0 navbar-right" action="/movies/search", method="GET">
+      <input class="form-control mr-sm-2" type="text" name="request" placeholder="Search Titles">
+      <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
     </form>
 </nav>

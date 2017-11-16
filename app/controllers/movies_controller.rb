@@ -70,7 +70,16 @@ class MoviesController < ApplicationController
   end
 
   def search
-    @movies = Movie.where(params[:request])
+    @movies = Movie.where("title ILIKE ?" , "%#{params[:request]}%")
+    if @movies.empty?
+      flash[:notice] = "Sorry, can't find any movies by that title. Here are all the titles alphabetically in one list. You can try using the Find shortcut on your keyboard."
+      @movies = Movie.order(:title)
+      @sort_by = "Lorenzini Rating"
+      @sorting_by = "Title"
+    else
+      @sort_by = "Lorenzini Rating -- This will show all movies"
+      @sorting_by = "Title"
+    end
   end
 
   private
