@@ -25,7 +25,7 @@ class MoviesController < ApplicationController
       if @movie
         render 'confirm'
       else
-        @errors = ["Not sure what happened there.", "Try again."]
+        @errors = @movie.errors.full_messages
         render 'new'
       end
     else
@@ -33,7 +33,7 @@ class MoviesController < ApplicationController
       if @movie
         render 'confirm'
       else
-        @errors = ["Not sure what happened there.", "Try again."]
+        @errors = @movie.errors.full_messages
         render 'new'
       end
     end
