@@ -16,22 +16,23 @@ ActiveRecord::Schema.define(version: 20171114222445) do
   enable_extension "plpgsql"
 
   create_table "movies", force: :cascade do |t|
-    t.string "title"
-    t.string "year"
+    t.string "title", null: false
+    t.string "year", null: false
     t.string "runtime"
     t.string "production"
-    t.text "plot"
+    t.text "plot", null: false
     t.text "actors"
     t.string "imdb_rating"
     t.string "rotten_tomatoes_rating"
+    t.integer "lorenzini_rating", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "ratings", force: :cascade do |t|
-    t.bigint "movie_id"
-    t.bigint "user_id"
-    t.integer "value"
+    t.bigint "movie_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "value", null: false
     t.string "review"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -40,7 +41,7 @@ ActiveRecord::Schema.define(version: 20171114222445) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username"
+    t.string "username", null: false
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

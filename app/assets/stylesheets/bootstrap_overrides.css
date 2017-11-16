@@ -31,6 +31,7 @@ h1 {
   margin-top: 20px;
   font-family: Righteous;
   text-align: center;
+  color: white;
   font-size: 5vw;
   text-shadow: .5px .5px black;
 }
@@ -58,7 +59,7 @@ a:visited {
 }
 
 a:hover {
-    color: darkred;
+    color: #ff1a1a;
 }
 
 
@@ -81,4 +82,8 @@ nav {
 
 li {
   margin-left: 25px;
+}
+
+.center {
+  text-align: center;
 }

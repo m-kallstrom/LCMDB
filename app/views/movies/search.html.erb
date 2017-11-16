@@ -1,8 +1,12 @@
-<h2>Rated Movies</h2>
+<h2>Search Results</h2>
 
-<%= paginate @movies, outer_window: 3 %>
-
-<p class="center">Showing movies sorted by <%= @sorting_by %> | Sort by <a href="/movies?sort_by=<%= @sort_by %>"><%= @sort_by %></a>?</p>
+<div class="errors">
+    <% if flash[:notice] %>
+      <ul>
+        <li><%= flash[:notice] %></li>
+      <ul>
+    <% end %>
+</div>
 
 <ul>
   <% @movies.each do |movie| %>
@@ -16,9 +20,3 @@
     <br>
   <% end %>
 </ul>
-
-<%= paginate @movies, outer_window: 3 %>
-
-<% if current_user %>
-    <%= link_to "Add a movie?", new_movie_path %>
-<% end %>

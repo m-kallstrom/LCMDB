@@ -1,8 +1,16 @@
 <h2>Log into your account</h2>
 
+<div class="errors">
 <% if @errors %>
   <%= render partial: "/partials/errors", locals: {errors: @errors} %>
 <% end %>
+
+<% if flash[:notice] %>
+  <ul>
+    <li><%= flash[:notice] %></li>
+  <ul>
+<% end %>
+</div>
 
 <div class="container">
   <form method="POST" action="/login">

@@ -1,10 +1,13 @@
 class MoviesController < ApplicationController
 
+  before_action :redirect_unregistered_users, only: [:confirm, :new, :create, :destroy], unless: -> { current_user }
+
   def new
     @movie = Movie.new
   end
 
   def confirm
+
     title = movie_params[:title]
     title = title.split(" ").join('+')
     key = ENV['OMDB_KEY']
@@ -25,7 +28,7 @@ class MoviesController < ApplicationController
       if @movie
         render 'confirm'
       else
-        @errors = ["Not sure what happened there.", "Try again."]
+        @errors = @movie.errors.full_messages
         render 'new'
       end
     else
@@ -33,7 +36,7 @@ class MoviesController < ApplicationController
       if @movie
         render 'confirm'
       else
-        @errors = ["Not sure what happened there.", "Try again."]
+        @errors = @movie.errors.full_messages
         render 'new'
       end
     end
@@ -50,7 +53,15 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.order(:title)
+    if params[:sort_by] == "Title"
+      @movies = Movie.order(:title).page params[:page]
+      @sort_by = "Lorenzini Rating"
+      @sorting_by = "Title"
+    else
+      @movies = Movie.order(lorenzini_rating: :desc).page params[:page]
+      @sorting_by = "Lorenzini Rating"
+      @sort_by = "Title"
+    end
   end
 
   def show
@@ -59,12 +70,26 @@ class MoviesController < ApplicationController
   end
 
   def search
-    @movies = Movie.where(params[:request])
+    @movies = Movie.where("title ILIKE ?" , "%#{params[:request]}%")
+    if @movies.empty?
+      flash[:notice] = "Sorry, can't find any movies by that title. Here are all the titles alphabetically in one list. You can try using the Find shortcut on your keyboard."
+      @movies = Movie.order(:title)
+      @sort_by = "Lorenzini Rating"
+      @sorting_by = "Title"
+    else
+      @sort_by = "Lorenzini Rating -- This will show all movies"
+      @sorting_by = "Title"
+    end
   end
 
   private
     def movie_params
       params.require(:movie).permit(:authenticity_token, :title, :year, :production, :actors, :plot, :runtime, :imdb_rating, :rotten_tomatoes_rating)
+    end
+
+    def redirect_unregistered_users
+      flash[:notice] = "You must be logged in to create a movie. Please register or log into your account."
+      redirect_to '/login'
     end
 
 end
