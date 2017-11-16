@@ -5,11 +5,16 @@ class MoviesController < ApplicationController
   end
 
   def confirm
-    title = params[:title]
+    title = movie_params[:title]
     title = title.split(" ").join('+')
     key = ENV['OMDB_KEY']
     require 'open-uri'
-    json = open("http://www.omdbapi.com/?apikey=#{key}&t=#{title}&plot=full").read
+    if movie_params[:year].empty?
+      json = open("http://www.omdbapi.com/?apikey=#{key}&t=#{title}&plot=full").read
+    else
+      year = movie_params[:year]
+      json = open("http://www.omdbapi.com/?apikey=#{key}&t=#{title}&y=#{year}&plot=full").read
+    end
     movie_data = JSON.parse(json)
     if json.include?("Movie not found!")
       @errors = ["Sorry, couldn't find that one.", "Computers are dumb sometimes.", "Try getting the exact title from IMDB.", "This uses free software so you get what you pay for.", "Hit the back button or try entering it manually."]

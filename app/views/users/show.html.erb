@@ -9,9 +9,9 @@
   <% @user.ratings.each do |rating| %>
     <li><%= link_to rating.movie.title, movie_path(rating.movie.id) %> :
     <% if rating.value >= 1 %>
-    <i class="fa fa-thumbs-up" aria-hidden="true"></i></li>
+      <i class="fa fa-thumbs-up" aria-hidden="true"></i></li>
     <% else %>
-    <i class="fa fa-thumbs-down" aria-hidden="true"></i></li>
+      <i class="fa fa-thumbs-down" aria-hidden="true"></i></li>
     <% end %>
     <li><%= @user.username %> says, " <%= rating.review %> " </li>
     <br>

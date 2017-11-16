@@ -5,11 +5,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(username: params[:username])
-    if @user && @user.authenticate(params[:password])
+    @user = User.find_by(username: user_params[:username])
+    if @user && @user.authenticate(user_params[:password])
       session[:user_id] = @user.id
       redirect_to '/'
     else
+      p @user
+      p "WTF?"
+      p @user.password_digest
       @errors = ['Either your username or password was incorrect.']
       redirect_to '/login'
     end
@@ -19,4 +22,10 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to '/login'
   end
+
+  private
+    def user_params
+      params.require(:user).permit(:username, :password, :authenticity_token)
+    end
+
 end

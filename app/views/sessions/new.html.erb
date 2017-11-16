@@ -1,8 +1,11 @@
 <h2>Log into your account</h2>
 
+<% if @errors %>
+  <%= render partial: "/partials/errors", locals: {errors: @errors} %>
+<% end %>
 
 <div class="container">
-  <form method="POST" action="/sessions">
+  <form method="POST" action="/login">
     <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
     <div class="form-group row">
       <label for="username" class="col-sm-2 col-form-label">Username:</label>
