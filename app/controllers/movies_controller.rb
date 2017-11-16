@@ -1,10 +1,13 @@
 class MoviesController < ApplicationController
 
+  before_action :redirect_unregistered_users, only: [:confirm, :new, :create, :destroy], unless: -> { current_user }
+
   def new
     @movie = Movie.new
   end
 
   def confirm
+
     title = movie_params[:title]
     title = title.split(" ").join('+')
     key = ENV['OMDB_KEY']
@@ -73,6 +76,11 @@ class MoviesController < ApplicationController
   private
     def movie_params
       params.require(:movie).permit(:authenticity_token, :title, :year, :production, :actors, :plot, :runtime, :imdb_rating, :rotten_tomatoes_rating)
+    end
+
+    def redirect_unregistered_users
+      flash[:notice] = "You must be logged in to create a movie. Please register or log into your account."
+      redirect_to '/login'
     end
 
 end

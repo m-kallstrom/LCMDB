@@ -16,6 +16,11 @@
     <% if @errors %>
       <%= render partial: "/partials/errors", locals: {errors: @errors} %>
     <% end %>
+    <% if flash[:notice] %>
+      <ul>
+        <li><%= flash[:notice] %></li>
+      <ul>
+    <% end %>
   </div>
 
 <h3>Ratings for This Movie</h3>
