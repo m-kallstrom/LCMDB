@@ -82,3 +82,7 @@ nav {
 li {
   margin-left: 25px;
 }
+
+#sort_by {
+  text-align: center;
+}

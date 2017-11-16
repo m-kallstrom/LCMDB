@@ -55,7 +55,7 @@ class MoviesController < ApplicationController
       @sort_by = "Lorenzini Rating"
       @sorting_by = "Title"
     else
-      @movies = Movie.order(:lorenzini_rating).page params[:page]
+      @movies = Movie.order(lorenzini_rating: :desc).page params[:page]
       @sorting_by = "Lorenzini Rating"
       @sort_by = "Title"
     end
