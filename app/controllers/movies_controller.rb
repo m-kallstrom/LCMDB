@@ -50,7 +50,13 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.order(:title)
+    # if params[:sort_by] == "Title"
+      @movies = Movie.order(:title).page params[:page]
+    # else
+      # @movies = Movie.all.sort_by(&:lorenzini_rating).page params[:page]
+      # @movies = Movie.order(:lorenzini_rating).page params[:page]
+      #<%= render @posts.sort_by { |post| post.votes.size }.reverse %>
+    # end
   end
 
   def show

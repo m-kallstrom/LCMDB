@@ -10,7 +10,11 @@ class Movie < ApplicationRecord
 
   def short_summary
     line = self.plot.split(". ")
-    line[0] + ". " + line[1] + "."
+    if line.length >= 2
+      line[0] + ". " + line[1] + "."
+    else
+      line
+    end
   end
 
 end
