@@ -13,23 +13,4 @@
  *= require_tree .
  *= require_self
  */
-
-.upvote-button {
-  flex-direction: column;
-  background-color: transparent;
-  border: none;
-  padding-top: 0px;
-  color: #8C8C8C;
-  vertical-align: sup;
-  padding: 0px 0px 0px 0px;
-}
-
-.downvote-button {
-  flex-direction: column;
-  background-color: transparent;
-  border: none;
-  color: #8C8C8C;
-  text-decoration: none;
-  vertical-align: sup;
-  padding: 0px 0px 0px 0px;
-}
+ @import "bootstrap";

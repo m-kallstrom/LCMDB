@@ -5,14 +5,18 @@ class MoviesController < ApplicationController
   end
 
   def confirm
-    title = params[:title]
+    title = movie_params[:title]
     title = title.split(" ").join('+')
     key = ENV['OMDB_KEY']
     require 'open-uri'
-    json = open("http://www.omdbapi.com/?apikey=#{key}&t=#{title}&plot=full").read
+    if movie_params[:year].empty?
+      json = open("http://www.omdbapi.com/?apikey=#{key}&t=#{title}&plot=full").read
+    else
+      year = movie_params[:year]
+      json = open("http://www.omdbapi.com/?apikey=#{key}&t=#{title}&y=#{year}&plot=full").read
+    end
     movie_data = JSON.parse(json)
-    if movie_data.include?("Movie not found!")
-      status 422
+    if json.include?("Movie not found!")
       @errors = ["Sorry, couldn't find that one.", "Computers are dumb sometimes.", "Try getting the exact title from IMDB.", "This uses free software so you get what you pay for.", "Hit the back button or try entering it manually."]
       @movie = Movie.new
       render 'confirm'
@@ -21,7 +25,6 @@ class MoviesController < ApplicationController
       if @movie
         render 'confirm'
       else
-        status 422
         @errors = ["Not sure what happened there.", "Try again."]
         render 'new'
       end
@@ -30,7 +33,6 @@ class MoviesController < ApplicationController
       if @movie
         render 'confirm'
       else
-        status 422
         @errors = ["Not sure what happened there.", "Try again."]
         render 'new'
       end
@@ -42,7 +44,6 @@ class MoviesController < ApplicationController
     if @movie.save
       redirect_to @movie
     else
-      status 422
       @errors = @movie.errors.full_messages
       redirect_to new_movie_path
     end
@@ -58,7 +59,7 @@ class MoviesController < ApplicationController
   end
 
   def search
-    @movies = Movie.search(params[:request])
+    @movies = Movie.where(params[:request])
   end
 
   private

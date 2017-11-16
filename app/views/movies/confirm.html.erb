@@ -2,26 +2,54 @@
 
 <% if @movie %>
 
-<form class="movie" method="POST" action="/movies">
-
-  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-  <input type="hidden" name="movie[runtime]" value="<%= @movie.runtime %>">
-  <input type="hidden" name="movie[production]" value="<%= @movie.production %>">
-  <label>Title:  <input type="text" name="movie[title]" value="<%= @movie.title %>"></label>
-  <br>
-  <label>Year:  <input type="text" name="movie[year]" value="<%= @movie.year %>"></label>
-  <br>
-  <label>Actors:  <input type="text" name="movie[actors]" value="<%= @movie.actors %>"></label>
-  <br>
-  <label>IMDB Rating:  <input type="text" name="movie[imdb_rating]" value="<%= @movie.imdb_rating %>"></label>
-  <br>
-  <label>Rotten Tomatoes Rating:  <input type="text" name="movie[rotten_tomatoes_rating]" value="<%= @movie.rotten_tomatoes_rating %>"></label>
-  <br>
-  <label>Plot:  <input type="text" name="movie[plot]" value="<%= @movie.plot %>"></label>
-  <br>
-  <button type="submit">Everything Looks Good! Save This Movie!</button>
-
-</form>
+<div class="container">
+  <form method="POST" action="/movies">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <input type="hidden" name="movie[runtime]" value="<%= @movie.runtime %>">
+    <input type="hidden" name="movie[production]" value="<%= @movie.production %>">
+    <div class="form-group row">
+      <label for="title" class="col-sm-2 col-form-label">Title:</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" name="movie[title]" value="<%= @movie.title %>">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="year" class="col-sm-2 col-form-label">Year:</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" name="movie[year]" value="<%= @movie.year %>">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="actors" class="col-sm-2 col-form-label">Actors:</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" name="movie[actors]" value="<%= @movie.actors %>">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="imdb_rating" class="col-sm-2 col-form-label">IMDB Rating:</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" name="movie[imdb_rating]" value="<%= @movie.imdb_rating %>">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="rotten_tomatoes_rating" class="col-sm-2 col-form-label">Rotten Tomatoes Rating:</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" name="movie[rotten_tomatoes_rating]" value="<%= @movie.rotten_tomatoes_rating %>">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="plot" class="col-sm-2 col-form-label">Plot:</label>
+      <div class="col-sm-10">
+        <textarea name="movie[plot]" class="form-control" id="textarea" rows="3"><%= @movie.plot %></textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="offset-sm-2 col-sm-10">
+        <button type="submit" class="btn btn-success">Everything Looks Good! Create This Movie!</button>
+      </div>
+    </div>
+  </form>
+</div>
 
 <% end %>
 
