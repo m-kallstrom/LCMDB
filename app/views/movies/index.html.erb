@@ -5,11 +5,11 @@
     <li><strong>Title:  <%= link_to "#{movie.title}", movie_path(movie.id)  %></li></strong>
     <li>Year:  <%= movie.year  %></li>
     <li>Main Actors:  <%= movie.actors  %></li>
-    <li>Plot:  <%= movie.plot  %></li>
-    <br>
     <li>IMDB Rating:  <%= movie.imdb_rating  %></li>
     <li>Rotten Tomatoes Rating:  <%= movie.rotten_tomatoes_rating  %></li>
     <li><strong>Lorenzini Rating:  <%= movie.lorenzini_rating  %></li></strong>
+    <li>Plot:  <%= movie.short_summary  %></li>
+    <br>
   <% end %>
 </ul>
 
