@@ -8,6 +8,7 @@ class Movie < ApplicationRecord
     self.ratings.sum(:value)
   end
 
+
   def short_summary
     line = self.plot.split(". ")
     if line.length >= 2

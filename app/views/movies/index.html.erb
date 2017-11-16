@@ -1,5 +1,7 @@
 <h2>Rated Movies</h2>
 
+<%= paginate @movies, outer_window: 3 %>
+
 <ul>
   <% @movies.each do |movie| %>
     <h3><li class="fa fa-tree">  Title:  <%= link_to "#{movie.title}", movie_path(movie.id)  %></li></h3>
@@ -12,5 +14,7 @@
     <br>
   <% end %>
 </ul>
+
+<%= paginate @movies, outer_window: 3 %>
 
 <%= link_to "Add a movie?", new_movie_path %>
