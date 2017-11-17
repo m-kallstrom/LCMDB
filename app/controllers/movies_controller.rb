@@ -23,6 +23,8 @@ class MoviesController < ApplicationController
       @errors = ["Sorry, couldn't find that one.", "Computers are dumb sometimes.", "Try getting the exact title from IMDB.", "This uses free software so you get what you pay for.", "Hit the back button or try entering it manually."]
       @movie = Movie.new
       render 'confirm'
+    elsif movie_data["Ratings"][0] == nil
+      @movie = Movie.new(title: movie_data["Title"], runtime: movie_data["Runtime"], year: movie_data["Year"], plot: movie_data["Plot"], actors: movie_data["Actors"], imdb_rating: "not available", rotten_tomatoes_rating: "not available", production: movie_data["Production"] )
     elsif movie_data["Ratings"][1] == nil
       @movie = Movie.new(title: movie_data["Title"], runtime: movie_data["Runtime"], year: movie_data["Year"], plot: movie_data["Plot"], actors: movie_data["Actors"], imdb_rating: movie_data["Ratings"][0]["Value"], rotten_tomatoes_rating: "not available", production: movie_data["Production"] )
       if @movie
@@ -80,6 +82,10 @@ class MoviesController < ApplicationController
       @sort_by = "Lorenzini Rating -- This will show all movies"
       @sorting_by = "Title"
     end
+  end
+
+  def destroy
+
   end
 
   private
