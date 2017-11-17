@@ -10,6 +10,7 @@ class MoviesController < ApplicationController
 
     title = movie_params[:title]
     title = title.split(" ").join('+')
+
     key = ENV['OMDB_KEY']
     require 'open-uri'
     if movie_params[:year].empty?
@@ -24,24 +25,21 @@ class MoviesController < ApplicationController
       @movie = Movie.new
       render 'confirm'
     elsif movie_data["Ratings"][0] == nil
-      @movie = Movie.new(title: movie_data["Title"], runtime: movie_data["Runtime"], year: movie_data["Year"], plot: movie_data["Plot"], actors: movie_data["Actors"], imdb_rating: "not available", rotten_tomatoes_rating: "not available", production: movie_data["Production"] )
+      imdb = "not available"
+      rt = "not available"
     elsif movie_data["Ratings"][1] == nil
-      @movie = Movie.new(title: movie_data["Title"], runtime: movie_data["Runtime"], year: movie_data["Year"], plot: movie_data["Plot"], actors: movie_data["Actors"], imdb_rating: movie_data["Ratings"][0]["Value"], rotten_tomatoes_rating: "not available", production: movie_data["Production"] )
-      if @movie
-        render 'confirm'
-      else
-        @errors = @movie.errors.full_messages
-        render 'new'
-      end
+      rt = "not available"
     else
-      @movie = Movie.new(title: movie_data["Title"], runtime: movie_data["Runtime"], year: movie_data["Year"], plot: movie_data["Plot"], actors: movie_data["Actors"], imdb_rating: movie_data["Ratings"][0]["Value"], rotten_tomatoes_rating: movie_data["Ratings"][1]["Value"], production: movie_data["Production"] )
+      imdb = movie_data["Ratings"][0]["Value"]
+      rt = movie_data["Ratings"][1]["Value"]
+    end
+    @movie = Movie.new(title: movie_data["Title"], runtime: movie_data["Runtime"], year: movie_data["Year"], plot: movie_data["Plot"], actors: movie_data["Actors"], imdb_rating: imdb, rotten_tomatoes_rating: rt, production: movie_data["Production"] )
       if @movie
         render 'confirm'
       else
         @errors = @movie.errors.full_messages
         render 'new'
       end
-    end
   end
 
   def create
