@@ -44,3 +44,8 @@
     <% end %>
   <% end %>
 </ul>
+
+<% if admin_user %>
+  <%= link_to 'Delete this movie?',  movie_path(@movie),
+    data: { confirm: 'Are you sure?' }, method: :delete %>
+<% end %>

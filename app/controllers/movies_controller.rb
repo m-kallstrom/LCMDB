@@ -83,7 +83,14 @@ class MoviesController < ApplicationController
   end
 
   def destroy
-
+    if admin_user
+      @movie = Movie.find_by(id: params[:id])
+      @movie.destroy
+      redirect_to movies_path
+    else
+      flash[:notice] = "This is an admin function. How did you even get here?"
+      redirect_to login_path
+    end
   end
 
   private

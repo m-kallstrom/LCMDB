@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   post '/movies/confirm' => 'movies#confirm'
 
   resources :users, only: [:new, :create, :show, :index]
-  resources :movies, only: [:new, :create, :show, :index]
-  resources :ratings
+  resources :movies, except: [:edit, :update]
+  resources :ratings, except: [:edit, :update, :destroy]
 
 end
