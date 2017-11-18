@@ -1,6 +1,6 @@
 <h2><%= @user.username %>'s Ratings</h2>
 
-<%= @user.username %> has <%= @user.ratings.count %> <%= @user.ratings.count == 1 ? "rating" : "ratings" %>.
+<%= @user.username %> has <%= @user.ratings.count %> <%= @user.ratings.count == 1 ? "rating" : "ratings" %>
 
 <% if @user.ratings.empty? %>
   :(
