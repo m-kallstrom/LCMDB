@@ -1,5 +1,5 @@
 class Movie < ApplicationRecord
-  has_many :ratings
+  has_many :ratings, dependent: :destroy
   has_many :viewers, through: :ratings, source: 'user'
 
   validates_presence_of :title, :year, :runtime, :production, :plot, :actors, :imdb_rating, :rotten_tomatoes_rating
