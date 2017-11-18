@@ -1,8 +1,7 @@
 <h2>Rated Movies</h2>
 
-<%= paginate @movies, outer_window: 3 %>
 
-<p class="center">Showing movies sorted by <%= @sorting_by %> | Sort by <a href="/movies?sort_by=<%= @sort_by %>"><%= @sort_by %></a>?</p>
+<p class="center"><%= page_entries_info @movies %>  <span class="fa fa-snowflake-o"></span> Showing movies sorted by <%= @sorting_by %>  <span class="fa fa-snowflake-o"></span>  Sort by <a href="/movies?sort_by=<%= @sort_by %>"><%= @sort_by %></a>?</p>
 
 <ul>
   <% @movies.each do |movie| %>
@@ -25,7 +24,7 @@
   <% end %>
 </ul>
 
-<%= paginate @movies, outer_window: 3 %>
+<p class="center"><%= paginate @movies, outer_window: 1 %></p>
 
 <% if current_user %>
     <%= link_to "Add a movie?", new_movie_path %>
