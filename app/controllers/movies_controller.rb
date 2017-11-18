@@ -48,7 +48,7 @@ class MoviesController < ApplicationController
       redirect_to @movie
     else
       @errors = @movie.errors.full_messages
-      redirect_to new_movie_path
+      render 'confirm'
     end
   end
 
