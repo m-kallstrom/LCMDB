@@ -10,7 +10,7 @@ class Rating < ApplicationRecord
 
   def update_movie_rating
     @movie = Movie.find(self.movie.id)
-    @movie.update_attributes(lorenzini_rating: @movie.ratings.sum(:value))
+    @movie.update_attributes(lorenzini_rating: @movie.ratings.average(:value))
   end
 
 end
