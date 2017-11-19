@@ -1,13 +1,15 @@
-<div class="cols-1-2 list-item">
-  <br><li class="fa fa-tree"><strong> <%= rating.user.username %></strong> says:
-    <% rating.value.times do %>
-      <span class= "fa fa-bell"></span>
-    <% end %>
-    <% empty_stars = 5 - rating.value %>
-    <% empty_stars.times do %>
-      <span class="fa fa-bell-o"></span>
+<% @movie.ratings.each do |rating| %>
+  <div class="cols-1-2 list-item">
+    <br><li class="fa fa-tree"><strong> <%= rating.user.username %></strong> says:
+      <% rating.value.times do %>
+        <span class= "fa fa-bell"></span>
       <% end %>
-    </li>
-  <br><li class="fa fa-snowflake-o"> <%= rating.review %></li>
-  <br>
-</div>
+      <% empty_stars = 5 - rating.value %>
+      <% empty_stars.times do %>
+        <span class="fa fa-bell-o"></span>
+        <% end %>
+      </li>
+    <br><li class="fa fa-snowflake-o"> <%= rating.review %></li>
+    <br>
+  </div>
+<% end %>
