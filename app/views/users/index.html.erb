@@ -2,6 +2,6 @@
 
 <ul>
 <% @users.each do |user| %>
-  <li><%= link_to user.username, user %>:  <%= user.ratings.count %> <%= user.ratings.count == 1 ? "rating" : "ratings" %></li>
+  <br><li class="fa fa-tree">&ensp;<strong><%= link_to user.username, user %></strong>:  <%= user.ratings.count %> <%= user.ratings.count == 1 ? "rating" : "ratings" %></li><br>
 <% end %>
 </ul>
