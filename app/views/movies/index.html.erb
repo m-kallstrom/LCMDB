@@ -1,23 +1,30 @@
-<h2>Rated Movies</h2>
+<h2>All Movies</h2>
 
-<%= paginate @movies, outer_window: 3 %>
 
-<p class="center">Showing movies sorted by <%= @sorting_by %> | Sort by <a href="/movies?sort_by=<%= @sort_by %>"><%= @sort_by %></a>?</p>
+<p class="center"> Sorting by <%= @sorting_by %> &ensp; <span class="fa fa-snowflake-o"></span> &ensp; Sort by <a href="/movies?sort_by=<%= @sort_by %>"><%= @sort_by %></a> instead?</p>
 
 <ul>
   <% @movies.each do |movie| %>
     <h3><li class="fa fa-tree">  Title:  <%= link_to "#{movie.title}", movie_path(movie.id)  %></li></h3>
-    <li class="fa fa-snowflake-o"><strong> Year:</strong> <%= movie.year  %></li>
-    <br><li class="fa fa-snowflake-o"><strong> Main Actors:</strong> <%= movie.actors  %></li>
-    <br><li class="fa fa-snowflake-o"><strong> IMDB Rating:</strong> <%= movie.imdb_rating  %></li>
-    <br><li class="fa fa-snowflake-o"><strong> Rotten Tomatoes Rating: </strong><%= movie.rotten_tomatoes_rating  %></li>
-    <br><li class="fa fa-snowflake-o"><strong> Lorenzini Rating:</strong> <%= movie.lorenzini_rating  %></li>
-    <br><li class="fa fa-snowflake-o"><strong> Plot:</strong> <%= movie.short_summary  %></li><br>
+    <li class="fa fa-snowflake-o">&ensp;<strong>Lorenzini Rating:</strong>
+      <% movie.lorenzini_rating.times do %>
+        <span class= "fa fa-bell"></span>
+      <% end %>
+      <% empty_stars = 5 - movie.lorenzini_rating %>
+      <% empty_stars.times do %>
+        <span class="fa fa-bell-o"></span>
+      <% end %>
+    </li>
+    <br><li class="fa fa-snowflake-o">&ensp;<strong>Year:</strong> <%= movie.year  %></li>
+    <br><li class="fa fa-snowflake-o">&ensp;<strong>Main Actors:</strong> <%= movie.actors  %></li>
+    <br><li class="fa fa-snowflake-o">&ensp;<strong>IMDB Rating:</strong> <%= movie.imdb_rating  %></li>
+    <br><li class="fa fa-snowflake-o">&ensp;<strong>Rotten Tomatoes Rating: </strong><%= movie.rotten_tomatoes_rating  %></li>
+    <br><li class="fa fa-snowflake-o">&ensp;<strong>Plot:</strong> <span class="plot"><%= movie.short_summary  %></span></li><br>
     <br>
   <% end %>
 </ul>
 
-<%= paginate @movies, outer_window: 3 %>
+<div class="center-div"><p class="center"><span class="fa fa-snowflake-o"></span> &ensp; <%= page_entries_info @movies %> &ensp; <span class="fa fa-snowflake-o"></span> <%= paginate @movies, outer_window: 1 %></p></div>
 
 <% if current_user %>
     <%= link_to "Add a movie?", new_movie_path %>

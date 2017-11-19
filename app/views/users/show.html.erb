@@ -1,6 +1,6 @@
 <h2><%= @user.username %>'s Ratings</h2>
 
-<%= @user.username %> has <%= @user.ratings.count %> <%= @user.ratings.count == 1 ? "rating" : "ratings" %>.
+<%= @user.username %> has <%= @user.ratings.count %> <%= @user.ratings.count == 1 ? "rating" : "ratings" %>
 
 <% if @user.ratings.empty? %>
   :(
@@ -8,11 +8,14 @@
   <ul>
   <% @user.ratings.each do |rating| %>
     <br><li class="fa fa-tree"><strong>  <%= link_to rating.movie.title, movie_path(rating.movie.id) %>: </strong>
-    <% if rating.value >= 1 %>
-      <i class="fa fa-thumbs-up" aria-hidden="true"></i></li>
-    <% else %>
-      <i class="fa fa-thumbs-down" aria-hidden="true"></i></li>
-    <% end %>
+      <% rating.value.times do %>
+        <span class= "fa fa-bell"></span>
+      <% end %>
+      <% empty_stars = 5 - rating.value %>
+      <% empty_stars.times do %>
+        <span class="fa fa-bell-o"></span>
+      <% end %>
+      </li>
     <br><li class="fa fa-snowflake-o">  <%= rating.review %></li>
     <br>
   <% end %>

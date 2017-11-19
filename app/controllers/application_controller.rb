@@ -6,4 +6,9 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def admin_user
+    @current_user == User.find_by(username: "Kristi")
+  end
+  helper_method :admin_user
+
 end

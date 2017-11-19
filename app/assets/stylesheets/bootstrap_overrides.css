@@ -1,24 +1,11 @@
 /* css for overriding bootstrap*/
 
 
-.upvote-button {
-  flex-direction: column;
+.vote-bell {
   background-color: transparent;
   border: none;
-  padding-top: 0px;
+  cursor: pointer;
   color: gold;
-  vertical-align: sup;
-  padding: 0px 0px 0px 0px;
-}
-
-.downvote-button {
-  flex-direction: column;
-  background-color: transparent;
-  border: none;
-  color: gold;
-  text-decoration: none;
-  vertical-align: sup;
-  padding: 0px 0px 0px 0px;
 }
 
 body {
@@ -86,4 +73,17 @@ li {
 
 .center {
   text-align: center;
+}
+
+.center-div {
+  display: block;
+  margin: 0 auto;
+}
+
+.pagination a {
+  color: gold;
+}
+
+li .plot {
+  line-height: 1.5em;
 }

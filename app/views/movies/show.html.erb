@@ -1,12 +1,20 @@
 <h2><%= @movie.title %></h2>
 
 <ul>
-  <li><strong>Year:</strong>  <%= @movie.year  %></li>
-  <li><strong>Main Actors:</strong>  <%= @movie.actors  %></li>
-  <li><strong>IMDB Rating:</strong>  <%= @movie.imdb_rating  %></li>
-  <li><strong>Rotten Tomatoes Rating:</strong>  <%= @movie.rotten_tomatoes_rating  %></li>
-  <li><strong>Lorenzini Rating:</strong>  <span class= "lr"><%= @movie.lorenzini_rating  %></span></li>
-  <li><strong>Plot:</strong>  <%= @movie.plot  %></li>
+  <li class="fa fa-snowflake-o">&ensp;<strong>Lorenzini Rating:</strong>
+    <% @movie.lorenzini_rating.times do %>
+      <span class= "fa fa-bell"></span>
+    <% end %>
+    <% empty_stars = 5 - @movie.lorenzini_rating %>
+    <% empty_stars.times do %>
+      <span class="fa fa-bell-o"></span>
+      <% end %>
+    </li>
+  <br><li class="fa fa-snowflake-o">&ensp;<strong>Year:</strong>  <%= @movie.year  %></li>
+  <br><li class="fa fa-snowflake-o">&ensp;<strong>Main Actors:</strong>  <%= @movie.actors  %></li>
+  <br><li class="fa fa-snowflake-o">&ensp;<strong>IMDB Rating:</strong>  <%= @movie.imdb_rating  %></li>
+  <br><li class="fa fa-snowflake-o">&ensp;<strong>Rotten Tomatoes Rating:</strong>  <%= @movie.rotten_tomatoes_rating  %></li>
+  <br><li class="fa fa-snowflake-o">&ensp;<strong>Plot:</strong>  <span class="plot"><%= @movie.plot  %></span></li>
   <br>
 </ul>
 
@@ -19,7 +27,7 @@
     <% if flash[:notice] %>
       <ul>
         <li><%= flash[:notice] %></li>
-      <ul>
+      </ul>
     <% end %>
   </div>
 
@@ -29,14 +37,22 @@
     There are no ratings yet :(
   <% else %>
     <% @movie.ratings.each do |rating| %>
-      <li class="fa fa-tree"><strong> <%= rating.user.username %></strong> says:
-      <% if rating.value >= 1 %>
-        <i class="fa fa-thumbs-up" aria-hidden="true"></i></li> </li>
-      <% else %>
-        <i class="fa fa-thumbs-down" aria-hidden="true"></i></li> </li>
-      <% end %>
+      <br><li class="fa fa-tree"><strong> <%= rating.user.username %></strong> says:
+        <% rating.value.times do %>
+          <span class= "fa fa-bell"></span>
+        <% end %>
+        <% empty_stars = 5 - rating.value %>
+        <% empty_stars.times do %>
+          <span class="fa fa-bell-o"></span>
+          <% end %>
+        </li>
     <br><li class="fa fa-snowflake-o"> <%= rating.review %></li>
     <br>
     <% end %>
   <% end %>
 </ul>
+
+<% if admin_user %>
+  <%= link_to 'Delete this movie?',  movie_path(@movie),
+    data: { confirm: 'Are you sure?' }, method: :delete %>
+<% end %>

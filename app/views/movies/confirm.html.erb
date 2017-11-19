@@ -41,12 +41,13 @@
       <label for="plot" class="col-sm-2 col-form-label">Plot:</label>
       <div class="col-sm-10">
         <textarea name="movie[plot]" class="form-control" id="textarea" rows="3"><%= @movie.plot %></textarea>
+        <span id="ratingHelpBlock" class="form-text text-muted">All fields required</span>
       </div>
     </div>
     <div class="form-group row">
       <div class="offset-sm-2 col-sm-10">
         <button type="submit" class="btn btn-success">Everything Looks Good! Save This Movie!</button>
-        <span ><button type="button" class="btn btn-success" onclick="location.href='/movies/new';">Ah, no! Go Back!</button></span>
+        <span>  <button type="button" class="btn btn-success" onclick="location.href='/movies/new';">Ah, no! Go Back!</button></span>
       </div>
     </div>
   </form>

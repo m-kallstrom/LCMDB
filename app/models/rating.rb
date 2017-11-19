@@ -7,10 +7,11 @@ class Rating < ApplicationRecord
   validates_uniqueness_of :user, scope: :movie
 
   after_save :update_movie_rating
+  after_destroy :update_movie_rating
 
   def update_movie_rating
     @movie = Movie.find(self.movie.id)
-    @movie.update_attributes(lorenzini_rating: @movie.ratings.sum(:value))
+    @movie.update_attributes(lorenzini_rating: @movie.ratings.average(:value))
   end
 
 end
