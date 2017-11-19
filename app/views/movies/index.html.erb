@@ -1,7 +1,7 @@
 <h2>Rated Movies</h2>
 
 
-<p class="center"> Showing movies sorted by <%= @sorting_by %>  <span class="fa fa-snowflake-o"></span>  Sort by <a href="/movies?sort_by=<%= @sort_by %>"><%= @sort_by %></a> instead?</p>
+<p class="center"> Sorting by <%= @sorting_by %> &ensp; <span class="fa fa-snowflake-o"></span> &ensp; Sort by <a href="/movies?sort_by=<%= @sort_by %>"><%= @sort_by %></a> instead?</p>
 
 <ul>
   <% @movies.each do |movie| %>
