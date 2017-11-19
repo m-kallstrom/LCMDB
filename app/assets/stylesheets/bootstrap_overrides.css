@@ -88,6 +88,6 @@ li .plot {
   line-height: 1.5em;
 }
 
-.bell-ratings button:hover {
-    text-shadow: 0 0 30px #ffc;
+.bell-ratings button.hover {
+    text-shadow: .5px .5px black;
 }

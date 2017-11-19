@@ -26,5 +26,7 @@ $(document).ready(function(){
 
   }) //type in review area
 
+  //highlight and animate bell ratings
+  new BellRating();
 
 }) //doc ready
