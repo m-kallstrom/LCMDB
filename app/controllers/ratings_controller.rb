@@ -3,20 +3,27 @@ class RatingsController < ApplicationController
   def create
     @rating = Rating.find_by(user_id: current_user.id, movie_id: ratings_params[:movie_id])
     if @rating
-      if @rating.value == ratings_params[:value]
-        flash[:notice] = "Review updated!"
-        @rating.update_attributes(review: ratings_params[:review])
+      @rating.update_attributes(value: ratings_params[:value], review: ratings_params[:review])
+      if request.xhr?
+        render partial: "/partials/ratings", layout: false, locals: {rating: @rating}
       else
-        @rating.update_attributes(value: ratings_params[:value], review: ratings_params[:review])
+        redirect_to "/movies/#{@rating.movie_id}"
       end
-      redirect_to "/movies/#{@rating.movie_id}"
     else
       @rating = Rating.new(ratings_params)
       if @rating.save
-        redirect_to "/movies/#{@rating.movie_id}"
+        if request.xhr?
+          render partial: "/partials/ratings", layout: false, locals: {rating: @rating}
+        else
+          redirect_to "/movies/#{@rating.movie_id}"
+        end
       else
-        flash[:notice] = @rating.errors.full_messages
-        redirect_back
+        if request.xhr?
+          #send error partial
+        else
+          flash[:notice] = @rating.errors.full_messages
+          redirect_back
+        end
       end
     end
   end

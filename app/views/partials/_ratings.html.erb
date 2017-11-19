@@ -1,34 +1,13 @@
-
-<% if current_user %>
-
-<div class="container">
-  <form method="POST" action="/ratings">
-    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-    <input type="hidden" name="rating[movie_id]" value="<%=@movie.id%>">
-    <input type="hidden" name="rating[user_id]" value="<%=current_user.id%>">
-    <div class="form-group row">
-      <label for="review" class="col-sm-2 col-form-label">Description:</label>
-      <div class="col-sm-10">
-        <input name="rating[review]" class="form-control" id="reviewtextarea" placeholder="Review (Optional). Click Deserved Number of Bells to Submit">
-      <span id="ratingHelpBlock" class="form-text text-muted">Max 5 Words!</span>
-      </div>
-    </div>
-    <div class="form-group row">
-      <div class="offset-sm-2 col-sm-10 bell-ratings">
-        <button type="submit" name="rating[value]" value="1" class="block fa fa-bell-o fa-2x fa-fw vote-bell shake-rotate"></button>
-        <button type="submit" name="rating[value]" value="2" class="block fa fa-bell-o fa-2x fa-fw vote-bell shake-rotate"></button>
-        <button type="submit" name="rating[value]" value="3" class="block fa fa-bell-o fa-2x fa-fw vote-bell shake-rotate"></button>
-        <button type="submit" name="rating[value]" value="4" class="block fa fa-bell-o fa-2x fa-fw vote-bell shake-rotate"></button>
-        <button type="submit" name="rating[value]" value="5" class="block fa fa-bell-o fa-2x fa-fw vote-bell shake-rotate"></button>
-        <br>
-      </div>
-    </div>
-  </form>
+<div class="cols-1-2 list-item">
+  <br><li class="fa fa-tree"><strong> <%= rating.user.username %></strong> says:
+    <% rating.value.times do %>
+      <span class= "fa fa-bell"></span>
+    <% end %>
+    <% empty_stars = 5 - rating.value %>
+    <% empty_stars.times do %>
+      <span class="fa fa-bell-o"></span>
+      <% end %>
+    </li>
+  <br><li class="fa fa-snowflake-o"> <%= rating.review %></li>
+  <br>
 </div>
-
-
-
-
-<% else %>
-  <p class="center">You must be logged in to review this movie.</p>
-<% end %>

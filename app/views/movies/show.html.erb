@@ -20,7 +20,7 @@
 
 <h3> Rate this movie </h3>
   <div class="ratings">
-    <%= render partial: "/partials/ratings" %>
+    <%= render partial: "/partials/ratings_form" %>
     <% if @errors %>
       <%= render partial: "/partials/errors", locals: {errors: @errors} %>
     <% end %>
@@ -32,25 +32,17 @@
   </div>
 
 <h3>Ratings for This Movie</h3>
-<ul>
+<div class="flex flex-column">
+<ul class="list">
   <% if @movie.ratings.empty? %>
     There are no ratings yet :(
   <% else %>
     <% @movie.ratings.each do |rating| %>
-      <br><li class="fa fa-tree"><strong> <%= rating.user.username %></strong> says:
-        <% rating.value.times do %>
-          <span class= "fa fa-bell"></span>
-        <% end %>
-        <% empty_stars = 5 - rating.value %>
-        <% empty_stars.times do %>
-          <span class="fa fa-bell-o"></span>
-          <% end %>
-        </li>
-    <br><li class="fa fa-snowflake-o"> <%= rating.review %></li>
-    <br>
+      <%= render partial: "/partials/ratings", layout: false, locals: {rating: rating} %>
     <% end %>
   <% end %>
 </ul>
+</div>
 
 <% if admin_user %>
   <%= link_to 'Delete this movie?',  movie_path(@movie),

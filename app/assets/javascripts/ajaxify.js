@@ -26,6 +26,24 @@ $(document).ready(function(){
 
   }); //type in review area
 
+  //Submit the form and update the ratings list
+  $('#ratings-form').on("submit", function(e){
+    e.preventDefault();
+    var $form = $(this)
+    var url = $form.attr('action')
+
+    $request = $.ajax({
+      url: url,
+      method: "POST",
+      data: $form.serialize(),
+    });//ajax request
+
+    $request.done(function(response){
+
+    })//response
+
+  })//on submitting the ratings form
+
   //highlight and animate bell ratings
   new BellRating();
 
