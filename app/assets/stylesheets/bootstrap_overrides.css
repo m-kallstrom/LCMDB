@@ -83,3 +83,7 @@ li {
 .pagination a {
   color: gold;
 }
+
+li .plot {
+  line-height: 1.5em;
+}
