@@ -20,7 +20,7 @@ class MoviesController < ApplicationController
       json = open("http://www.omdbapi.com/?apikey=#{key}&t=#{title}&y=#{year}&plot=full").read
     end
     movie_data = JSON.parse(json)
-    if json.include?("Movie not found!")
+    if movie_data["Response"] == "false"
       @errors = ["Sorry, couldn't find that one.", "Computers are dumb sometimes.", "Try getting the exact title from IMDB.", "This uses free software so you get what you pay for.", "Hit the back button or try entering it manually."]
       @movie = Movie.new
       render 'confirm'
@@ -29,6 +29,7 @@ class MoviesController < ApplicationController
       rt = "not available"
     elsif movie_data["Ratings"][1] == nil
       rt = "not available"
+      imdb = movie_data["Ratings"][0]["Value"]
     else
       imdb = movie_data["Ratings"][0]["Value"]
       rt = movie_data["Ratings"][1]["Value"]
