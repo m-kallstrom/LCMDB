@@ -6,6 +6,7 @@
 <ul>
   <% @movies.each do |movie| %>
     <h3><li class="fa fa-tree">  Title:  <%= link_to "#{movie.title}", movie_path(movie.id)  %></li></h3>
+    <div class="col-sm-11 center-div">
     <li class="fa fa-snowflake-o">&ensp;<strong>Lorenzini Rating:</strong>
       <% movie.lorenzini_rating.times do %>
         <span class= "fa fa-bell"></span>
@@ -21,6 +22,7 @@
     <br><li class="fa fa-snowflake-o">&ensp;<strong>Rotten Tomatoes Rating: </strong><%= movie.rotten_tomatoes_rating  %></li>
     <br><li class="fa fa-snowflake-o">&ensp;<strong>Plot:</strong> <span class="plot"><%= movie.short_summary  %></span></li><br>
     <br>
+    </div>
   <% end %>
 </ul>
 
