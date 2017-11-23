@@ -1,15 +1,9 @@
 <h2><%= @movie.title %></h2>
 
 <ul>
-<div class=" col-sm-11">
   <li class="fa fa-snowflake-o">&ensp;<strong>Lorenzini Rating:</strong>
     <% @movie.lorenzini_rating.times do %>
-      <span class= "fa fa-bell"></span>
-    <% end %>
-    <% empty_stars = 5 - @movie.lorenzini_rating %>
-    <% empty_stars.times do %>
-      <span class="fa fa-bell-o"></span>
-      <% end %>
+      <span id="lorenzini_rating_partial"><%= render partial: "/partials/lorenzini_rating" %></span>
     </li>
   <br><li class="fa fa-snowflake-o">&ensp;<strong>Year:</strong>  <%= @movie.year  %></li>
   <br><li class="fa fa-snowflake-o">&ensp;<strong>Main Actors:</strong>  <%= @movie.actors  %></li>
@@ -17,7 +11,6 @@
   <br><li class="fa fa-snowflake-o">&ensp;<strong>Rotten Tomatoes Rating:</strong>  <%= @movie.rotten_tomatoes_rating  %></li>
   <br><li class="fa fa-snowflake-o">&ensp;<strong>Plot:</strong>  <span class="plot"><%= @movie.plot  %></span></li>
   <br>
-  </div>
 </ul>
 
 <h3> Rate this movie </h3>
@@ -34,7 +27,7 @@
   </div>
 
 <h3>Ratings for This Movie</h3>
-<div class="flex flex-column col-sm-11">
+<div class="flex flex-column">
 <ul class="list" id="ratings-list">
   <% if @movie.ratings.empty? %>
     There are no ratings yet :(

@@ -29,6 +29,16 @@ class RatingsController < ApplicationController
     end
   end
 
+  def index
+    @movie = Movie.find_by(id: params[:id])
+    if @movie
+      render partial: "/partials/lorenzini_rating", layout: false
+    else
+      flash[:notice] = @movie.errors.full_messages
+      redirect_back
+    end
+  end
+
   private
     def ratings_params
       params.require(:rating).permit(:movie_id, :user_id, :review, :value, :authenticity_token)

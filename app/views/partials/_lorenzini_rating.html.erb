@@ -1,0 +1,7 @@
+<% @movie.lorenzini_rating.times do %>
+  <span class= "fa fa-bell"></span>
+<% end %>
+<% empty_stars = 5 - @movie.lorenzini_rating %>
+<% empty_stars.times do %>
+    <span class="fa fa-bell-o"></span>
+<% end %>
