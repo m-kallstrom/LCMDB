@@ -2,7 +2,6 @@
 
 <ul>
   <li class="fa fa-snowflake-o">&ensp;<strong>Lorenzini Rating:</strong>
-    <% @movie.lorenzini_rating.times do %>
       <span id="lorenzini_rating_partial"><%= render partial: "/partials/lorenzini_rating" %></span>
     </li>
   <br><li class="fa fa-snowflake-o">&ensp;<strong>Year:</strong>  <%= @movie.year  %></li>
