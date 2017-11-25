@@ -8,20 +8,9 @@
     <h3><li class="fa fa-tree">  Title:  <%= link_to "#{movie.title}", movie_path(movie.id)  %></li></h3>
     <div class="col-sm-11 center-div">
     <li class="fa fa-snowflake-o">&ensp;<strong>Lorenzini Rating:</strong>
-      <% movie.lorenzini_rating.times do %>
-        <span class= "fa fa-bell"></span>
-      <% end %>
-      <% empty_stars = 5 - movie.lorenzini_rating %>
-      <% empty_stars.times do %>
-        <span class="fa fa-bell-o"></span>
-      <% end %>
+      <%= render partial: "/partials/lorenzini_rating", locals: {movie: movie} %>
     </li>
-    <br><li class="fa fa-snowflake-o">&ensp;<strong>Year:</strong> <%= movie.year  %></li>
-    <br><li class="fa fa-snowflake-o">&ensp;<strong>Main Actors:</strong> <%= movie.actors  %></li>
-    <br><li class="fa fa-snowflake-o">&ensp;<strong>IMDB Rating:</strong> <%= movie.imdb_rating  %></li>
-    <br><li class="fa fa-snowflake-o">&ensp;<strong>Rotten Tomatoes Rating: </strong><%= movie.rotten_tomatoes_rating  %></li>
-    <br><li class="fa fa-snowflake-o">&ensp;<strong>Plot:</strong> <span class="plot"><%= movie.short_summary  %></span></li><br>
-    <br>
+    <%= render partial: "/partials/movie_details", locals: {movie: movie} %>
     </div>
   <% end %>
 </ul>
