@@ -43,14 +43,15 @@ $(document).ready(function(){
       $('#ratings-list div').remove();
       $('#ratings-list').append(response);
       $get_lr = $.ajax({
-        url: '/movies/rating'
-        method: 'get'
+        url: "/movies/<%= @movie.id %>/rating",
+        method: "GET",
       });// request inside successful response
 
       $get_lr.done(function(rating){
         $('#lorenzini_rating_partial').remove();
         $('#lorenzini_rating_partial').append(rating);
-      });
+      }); //ratings response
+
     });//response
 
   });//on submitting the ratings form

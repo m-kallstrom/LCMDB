@@ -32,7 +32,7 @@ class RatingsController < ApplicationController
   def index
     @movie = Movie.find_by(id: params[:id])
     if @movie
-      render partial: "/partials/lorenzini_rating", layout: false
+      render partial: "/partials/lorenzini_rating", layout: false, locals: {movie: @movie}
     else
       flash[:notice] = @movie.errors.full_messages
       redirect_back

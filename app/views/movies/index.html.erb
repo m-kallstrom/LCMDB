@@ -7,10 +7,10 @@
   <% @movies.each do |movie| %>
     <h3><li class="fa fa-tree">  Title:  <%= link_to "#{movie.title}", movie_path(movie.id)  %></li></h3>
     <div class="col-sm-11 center-div">
-    <li class="fa fa-snowflake-o">&ensp;<strong>Lorenzini Rating:</strong>
-      <%= render partial: "/partials/lorenzini_rating", locals: {movie: movie} %>
-    </li>
-    <%= render partial: "/partials/movie_details", locals: {movie: movie} %>
+      <li class="fa fa-snowflake-o">&ensp;<strong>Lorenzini Rating:</strong>
+        <%= render partial: "/partials/lorenzini_rating", locals: {movie: movie} %>
+      </li>
+      <%= render partial: "/partials/movie_details", locals: {movie: movie} %>
     </div>
   <% end %>
 </ul>
