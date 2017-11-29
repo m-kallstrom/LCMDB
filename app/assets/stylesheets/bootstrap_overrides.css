@@ -132,3 +132,7 @@ li .plot {
 #show_movie_details {
   padding-right: 4em;
 }
+
+.errors {
+  color: gold;
+}

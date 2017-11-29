@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       redirect_to '/'
     else
       @errors = ['Either your username or password was incorrect.']
-      render new
+      render 'new'
     end
   end
 

@@ -1,12 +1,6 @@
 <h2>Search Results</h2>
 
-<div class="errors">
-    <% if flash[:notice] %>
-      <ul>
-        <li><%= flash[:notice] %></li>
-      <ul>
-    <% end %>
-</div>
+<%= render partial: "/partials/errors", locals: {errors: @errors} %>
 
 <ul>
   <% @movies.each do |movie| %>

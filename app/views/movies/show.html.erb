@@ -12,14 +12,7 @@
 <h3> Rate this movie </h3>
   <div class="ratings">
     <%= render partial: "/partials/ratings_form" %>
-    <% if @errors %>
-      <%= render partial: "/partials/errors", locals: {errors: @errors} %>
-    <% end %>
-    <% if flash[:notice] %>
-      <ul>
-        <li><%= flash[:notice] %></li>
-      </ul>
-    <% end %>
+    <%= render partial: "/partials/errors", locals: {errors: @errors} %>
   </div>
 
 <h3>Ratings for This Movie</h3>
