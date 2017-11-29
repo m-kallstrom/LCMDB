@@ -29,7 +29,7 @@ class RatingsController < ApplicationController
     end
   end
 
-  def index
+  def show
     @movie = Movie.find_by(id: params[:id])
     if @movie
       render partial: "/partials/lorenzini_rating", layout: false, locals: {movie: @movie}

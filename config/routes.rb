@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   get '/movies/search' => 'movies#search'
   post '/movies/confirm' => 'movies#confirm'
-  get '/movies/:id/rating' => 'ratings#index'
+  get '/movies/:id/rating' => 'ratings#show'
 
   resources :users, only: [:new, :create, :show, :index]
   resources :movies, except: [:edit, :update]
