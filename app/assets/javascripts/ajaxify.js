@@ -32,9 +32,10 @@ $(document).ready(function(){
     var $form = $('#ratings-form')
     var $button = $(this)
     var url = $form.attr('action')
+    var movie_id = document.getElementById("movie_id").value;
 
     $request = $.ajax({
-      url: "/movies/<%= @movie.id %>/ratings",
+      url: url,
       method: "POST",
       data: $form.serialize() + "&rating[value]="+ $button.attr("value"),
     });//ajax request
@@ -43,13 +44,14 @@ $(document).ready(function(){
       $('#ratings-list div').remove();
       $('#ratings-list').append(response);
       $get_lr = $.ajax({
-        url: "/movies/<%= @movie.id %>/rating",
+        url: "/movies/" + movie_id + "/rating",
         method: "GET",
       });// request inside successful response
 
       $get_lr.done(function(rating){
-        $('#lorenzini_rating_partial').remove();
-        $('#lorenzini_rating_partial').append(rating);
+        console.log(rating)
+        // $('#lorenzini_rating_partial').text(' ');
+        $('#lorenzini_rating_partial').html(rating);
       }); //ratings response
 
     });//response
