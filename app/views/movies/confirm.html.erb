@@ -1,5 +1,7 @@
 <h2>Confirm This Movie</h2>
 
+<%= render partial: "/partials/errors", locals: {errors: @errors} %>
+
 <% if @movie %>
 
 <div class="container">
@@ -55,6 +57,4 @@
 
 <% end %>
 
-<% if @errors %>
-  <%= render partial: "/partials/errors", locals: {errors: @errors} %>
-<% end %>
+

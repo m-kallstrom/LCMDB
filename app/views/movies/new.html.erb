@@ -1,12 +1,8 @@
 <h2>Add a New Movie</h2>
 
-<% if flash[:notice] %>
-  <%= flash[:notice] %>
-<% end %>
 
-<% if @errors %>
-  <%= render partial: "/partials/errors", locals: {errors: @errors} %>
-<% end %>
+<%= render partial: "/partials/errors", locals: {errors: @errors} %>
+
 
 <div class="container">
   <form method="POST" action="/movies/confirm">

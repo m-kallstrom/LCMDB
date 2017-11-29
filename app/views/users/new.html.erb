@@ -1,9 +1,7 @@
 <h2>Register and Start Reviewing!</h2>
 
-<% if @errors %>
-  <%= render partial: "/partials/errors", locals: {errors: @errors} %>
-<% end %>
 
+<%= render partial: "/partials/errors", locals: {errors: @errors} %>
 
 <div class="container">
   <form method="POST" action="/users">

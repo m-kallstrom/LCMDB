@@ -1,5 +1,15 @@
-<ul>
-  <% errors.each do |msg| %>
-    <li><%= msg %></li>
+<div class="errors">
+  <% if @errors %>
+    <ul>
+      <% errors.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
   <% end %>
-</ul>
+  <br>
+  <% if flash[:notice] %>
+    <ul>
+      <li><%= flash[:notice] %></li>
+    </ul>
+  <% end %>
+</div>

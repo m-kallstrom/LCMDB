@@ -32,6 +32,7 @@ $(document).ready(function(){
     var $form = $('#ratings-form')
     var $button = $(this)
     var url = $form.attr('action')
+    var movie_id = document.getElementById("movie_id").value;
 
     $request = $.ajax({
       url: url,
@@ -42,9 +43,20 @@ $(document).ready(function(){
     $request.done(function(response){
       $('#ratings-list div').remove();
       $('#ratings-list').append(response);
-    })//response
+      $get_lr = $.ajax({
+        url: "/movies/" + movie_id + "/rating",
+        method: "GET",
+      });// request inside successful response
 
-  })//on submitting the ratings form
+      $get_lr.done(function(rating){
+        console.log(rating)
+        // $('#lorenzini_rating_partial').text(' ');
+        $('#lorenzini_rating_partial').html(rating);
+      }); //ratings response
+
+    });//response
+
+  });//on submitting the ratings form
 
   //highlight and animate bell ratings
   new BellRating();
